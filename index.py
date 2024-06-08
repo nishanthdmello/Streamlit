@@ -11,9 +11,9 @@ import streamlit as st # type: ignore
 
 def send_email(name):
 
-    sender_email = "nishanth.iipcmci@chavaraacademy.in"
-    sender_password = "1905@2003"
-    recipient_email = "nishanthdmello2003@gmail.com"
+    sender_email = os.getenv("SENDER_EMAIL")
+    sender_password = os.getenv("PASSWORD")
+    recipient_email = os.getenv("RECIPIENT_EMAIL")
     subject = name + "'s Birthday Today"
 
     message = MIMEMultipart()
@@ -56,7 +56,7 @@ def schedule_email_on_date(date, name):
         if datetime.now().strftime("%Y-%m-%d") == date:
             send_email(name)
 
-    schedule.every().day.at("20:04").do(job).tag(date)
+    schedule.every().day.at("20:02").do(job).tag(date)
 
 for date, name in zip(dates, names):
     schedule_email_on_date(date, name)
