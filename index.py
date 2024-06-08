@@ -56,7 +56,7 @@ def schedule_email_on_date(date, name):
         if datetime.now().strftime("%Y-%m-%d") == date:
             send_email(name)
 
-    schedule.every().day.at("20:01").do(job).tag(date)
+    schedule.every().day.at("20:04").do(job).tag(date)
 
 for date, name in zip(dates, names):
     schedule_email_on_date(date, name)
