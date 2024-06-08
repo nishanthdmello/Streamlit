@@ -8,13 +8,12 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import streamlit as st # type: ignore
 
-st.write("welcome to birthday teller")
 
 def send_email(name):
 
-    sender_email = os.getenv("SENDER_EMAIL")
-    sender_password = os.getenv("PASSWORD")
-    recipient_email = os.getenv("RECIPIENT_EMAIL")
+    sender_email = "nishanth.iipcmci@chavaraacademy.in"
+    sender_password = "1905@2003"
+    recipient_email = "nishanthdmello2003@gmail.com"
     subject = name + "'s Birthday Today"
 
     message = MIMEMultipart()
@@ -34,6 +33,7 @@ def send_email(name):
         print("Failed to send email:", str(e))
 
 
+st.write("welcome to birthday teller")
 
 load_dotenv() 
 
@@ -56,7 +56,7 @@ def schedule_email_on_date(date, name):
         if datetime.now().strftime("%Y-%m-%d") == date:
             send_email(name)
 
-    schedule.every().day.at("17:25").do(job).tag(date)
+    schedule.every().day.at("20:01").do(job).tag(date)
 
 for date, name in zip(dates, names):
     schedule_email_on_date(date, name)
